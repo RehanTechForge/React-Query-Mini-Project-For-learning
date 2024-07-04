@@ -6,6 +6,7 @@ import App from "./App";
 import "./index.css";
 import Products from "./Pages/Products";
 import Product from "./Pages/Product";
+import Layout from "./Pages/Layout";
 
 // Create a QueryClient
 const queryClient = new QueryClient();
@@ -14,15 +15,21 @@ const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
-  },
-  {
-    path: "/products",
-    element: <Products />,
-  },
-  {
-    path: "/products/:productId",
-    element: <Product />,
+    element: <Layout />,
+    children: [
+      {
+        path: "",
+        element: <App />,
+      },
+      {
+        path: "products",
+        element: <Products />,
+      },
+      {
+        path: "products/:productId",
+        element: <Product />,
+      },
+    ],
   },
 ]);
 
